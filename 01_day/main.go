@@ -19,6 +19,24 @@ func main() {
 
 	total := deltaLists(list1, list2)
 	fmt.Println(total)
+
+	product := productLists(list1, list2)
+	fmt.Println(product)
+}
+
+func productLists(list1 []int, list2 []int) int {
+	var product int
+	for i := range list1 {
+		var counts int
+		for j := range list2 {
+			if list1[i] == list2[j] {
+				counts++
+			}
+		}
+		product += list1[i] * counts
+	}
+
+	return product
 }
 
 func deltaLists(list1 []int, list2 []int) int {
@@ -36,7 +54,6 @@ func getLists(data []string) ([]int, []int) {
 
 	for i := range data {
 		row := data[i]
-		fmt.Println(row)
 		num1, err1 := strconv.Atoi(string(row[0:5]))
 		num2, err2 := strconv.Atoi(string(row[8:13]))
 		if err1 != nil || err2 != nil {
